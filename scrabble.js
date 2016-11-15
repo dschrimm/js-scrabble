@@ -1,15 +1,19 @@
 var Scrabble = function() {
-  this._onePoint = ['a','e','i','o','u','l','n','r','s','t'];
-  this._twoPoints = ['d','g'];
-  this._threePoints = ['b','c','m','p'];
-  this._fourPoints = ['f','h','v','w','y'];
-  this._fivePoints = ['k'];
-  this._eightPoints = ['j','x'];
-  this._tenPoints = ['q','z'];
+  this._letterScores = [['a','e','i','o','u','l','n','r','s','t'], ['d','g'], ['b','c','m','p'], ['f','h','v','w','y'], ['k'], [], [], ['j','x'], [], ['q','z']];
 };
 
-Scrabble.prototype.score = function(word) {
-  
+Scrabble.prototype.score = function(string) {
+  var word = string.toLowerCase();
+  var wordScore = 0;
+
+  for (i = 0; i < word.length; i++) {
+    for (j = 0; j < this._letterScores.length; j++) {
+      if (this._letterScores[j].includes(word[i])) {
+        wordScore += (j + 1);
+      }
+    }
+  }
+  return wordScore;
 };
 
 Scrabble.prototype.highestScoreFrom = function(arrayOfWords) {
@@ -17,12 +21,15 @@ Scrabble.prototype.highestScoreFrom = function(arrayOfWords) {
 };
 
 
-// YOUR CODE HERE
-Scrabble.prototype.helloWorld = function() {
-  return 'hello world!';
-};
+var s = new Scrabble();
+// console.log(s.helloWorld());
+
+console.log(s.score("HeLlO"));
+
+
+
+
+
+
 
 module.exports = Scrabble;
-
-// var s = new Scrabble();
-// console.log(s.helloWorld());
