@@ -10,6 +10,7 @@ Scrabble.prototype.score = function(string) {
     for (j = 0; j < this._letterScores.length; j++) {
       if (this._letterScores[j].includes(word[i])) {
         wordScore += (j + 1);
+        break;
       }
     }
   }
@@ -20,9 +21,7 @@ Scrabble.prototype.highestScoreFrom = function(arrayOfWords) {
 
 };
 
-
 var s = new Scrabble();
-// console.log(s.helloWorld());
 
 console.log(s.score("HeLlO"));
 
