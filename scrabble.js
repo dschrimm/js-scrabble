@@ -14,6 +14,9 @@ Scrabble.prototype.score = function(string) {
       }
     }
   }
+  if (word.length == 7) {
+    wordScore += 50;
+  }
   return wordScore;
 };
 
@@ -23,7 +26,7 @@ Scrabble.prototype.highestScoreFrom = function(arrayOfWords) {
 
 var s = new Scrabble();
 
-console.log(s.score("HeLlO"));
+console.log(s.score("HeLlOsd"));
 
 
 
