@@ -6,3 +6,6 @@ Scrabble.prototype.helloWorld = function() {
 };
 
 module.exports = Scrabble;
+
+// var s = new Scrabble();
+// console.log(s.helloWorld());
