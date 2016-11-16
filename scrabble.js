@@ -1,18 +1,21 @@
 var Scrabble = function() {
-  this._letterScores = [['a','e','i','o','u','l','n','r','s','t'], ['d','g'], ['b','c','m','p'], ['f','h','v','w','y'], ['k'], [], [], ['j','x'], [], ['q','z']];
+  this.LETTER_SCORES = [['a','e','i','o','u','l','n','r','s','t'], ['d','g'], ['b','c','m','p'], ['f','h','v','w','y'], ['k'], [], [], ['j','x'], [], ['q','z']];
 };
 
 Scrabble.prototype.score = function(string) {
   var word = string.toLowerCase();
   var wordScore = 0;
+  // Loop through each letter of the word
   for (k = 0; k < word.length; k++) {
-    for (j = 0; j < this._letterScores.length; j++) {
-      if (this._letterScores[j].includes(word[k])) {
+    // Loop through letter scores
+    for (j = 0; j < this.LETTER_SCORES.length; j++) {
+      if (this.LETTER_SCORES[j].includes(word[k])) {
         wordScore += (j + 1);
         break;
       }
     }
   }
+  // Add bonus points for 7 letter words
   if (word.length == 7) {
     wordScore += 50;
   }
