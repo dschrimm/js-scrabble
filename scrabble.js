@@ -110,7 +110,7 @@ Player.prototype.highestScoringWord = function() {
 
 // Returns the highest scoring word score
 Player.prototype.highestWordScore = function() {
-
+  return s.score(p.highestScoringWord());
 };
 
 var s = new Scrabble();
@@ -123,11 +123,16 @@ console.log(p.plays);
 p.play('goodbye');
 console.log(p.plays);
 console.log(s.highestScoreFrom(p.plays));
+console.log(p.hasWon());
 p.play('zzz');
 console.log(p.plays);
 console.log(p.totalScore());
 console.log(p.hasWon());
+p.play('hi');
+console.log(p.plays);
+console.log(p.hasWon());
 console.log(p.highestScoringWord());
+console.log(p.highestWordScore());
 
 
 module.exports = Scrabble;
