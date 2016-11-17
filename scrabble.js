@@ -23,6 +23,7 @@ Scrabble.prototype.score = function(string) {
 };
 
 Scrabble.prototype.highestScoreFrom = function(arrayOfWords) {
+  var word_scores = [];
   var scores = [];
   for (i = 0; i < arrayOfWords.length; i++) {
     var played_word = arrayOfWords[i];
@@ -33,15 +34,40 @@ Scrabble.prototype.highestScoreFrom = function(arrayOfWords) {
       score: word_score
     };
 
-    scores.push(obj);
+    word_scores.push(obj);
+    scores.push(word_score);
   }
-  // return Math.max(scores);
-  return scores;
+
+  var max_score = Math.max.apply(null, scores);
+  var max_words = [];
+
+  // Collect words with value of high score
+  for (i = 0; i < word_scores.length; i++) {
+    if (word_scores[i].score == max_score) {
+      max_words.push(word_scores[i].word);
+    }
+  }
+
+  // Return correct word based on length
+  var top_word = '';
+  var top_word_length = 7;
+
+  for (i = 0; i < max_words.length; i++) {
+    if (max_words[i].length == 7) {
+      return max_words[i];
+    } else if (max_words[i].length < top_word_length) {
+      top_word_length = max_words[i].length;
+      top_word = max_words[i];
+    }
+  }
+
+  // Return high score;
+  return top_word;
 };
 
 var s = new Scrabble();
 
-console.log(s.highestScoreFrom(["HeLlOs", "hi", "asdfjkl"]));
+console.log(s.highestScoreFrom(["HeLlOs", "acadlei", "hi", "zzzzzz"]));
 
 
 
