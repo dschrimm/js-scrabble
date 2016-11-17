@@ -32,4 +32,5 @@ Player.prototype.highestWordScore = function() {
 
 };
 
+
 new Player('Friend');
