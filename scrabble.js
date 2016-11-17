@@ -65,14 +65,69 @@ Scrabble.prototype.highestScoreFrom = function(arrayOfWords) {
   return top_word;
 };
 
+// **************PLAYER******************
+
+var Player = function(name) {
+  this.name = name;
+  this.plays = [];
+};
+
+// Adds the input word to the plays array. Returns false if already won.
+Player.prototype.play = function(word) {
+  if (this.name.hasWon === true) {
+    return false;
+  }
+
+  this.plays.push(word);
+};
+
+// Sums up and returns the score of the player words
+Player.prototype.totalScore = function() {
+  var totalScore = 0;
+
+  for (i = 0; i < this.plays.length; i++) {
+    var wordScore = s.score(this.plays[i]);
+    totalScore += wordScore;
+  }
+
+  return totalScore;
+
+};
+
+// Checks if the player has over 100 points
+Player.prototype.hasWon = function() {
+  if (this.totalScore() > 100) {
+    return true;
+  } else {
+    return false;
+  }
+};
+
+// Returns the highest scoring word
+Player.prototype.highestScoringWord = function() {
+  return s.highestScoreFrom(this.plays);
+};
+
+// Returns the highest scoring word score
+Player.prototype.highestWordScore = function() {
+
+};
+
 var s = new Scrabble();
 
 console.log(s.highestScoreFrom(["HeLlOs", "acadlei", "hi", "zzzzzz"]));
 
-
-
-
-
+var p = new Player('d');
+p.play('hello');
+console.log(p.plays);
+p.play('goodbye');
+console.log(p.plays);
+console.log(s.highestScoreFrom(p.plays));
+p.play('zzz');
+console.log(p.plays);
+console.log(p.totalScore());
+console.log(p.hasWon());
+console.log(p.highestScoringWord());
 
 
 module.exports = Scrabble;
