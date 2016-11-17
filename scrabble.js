@@ -74,7 +74,7 @@ var Player = function(name) {
 
 // Adds the input word to the plays array. Returns false if already won.
 Player.prototype.play = function(word) {
-  if (this.name.hasWon === true) {
+  if (this.hasWon() === true) {
     return false;
   }
 
